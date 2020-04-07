@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "550934580539",
+    "firebase_url": "https://welfarewallet-ea72a.firebaseio.com",
+    "project_id": "welfarewallet-ea72a",
+    "storage_bucket": "welfarewallet-ea72a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550934580539:android:834ecc9bb1a317fcfdbb1e",
+        "android_client_info": {
+          "package_name": "com.arjunrao.welfarewallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550934580539-3d4uvl834eflk52o78hmsds7ol4pk3au.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arjunrao.welfarewallet",
+            "certificate_hash": "0f5070a4a59c86118e81397adc3dd2a021891bec"
+          }
+        },
+        {
+          "client_id": "550934580539-4f1c8mir3k0qq820m5t3c0os605lfd7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGthUuHgLN_hHbq7772vlJQIKoICd8KpU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550934580539-4f1c8mir3k0qq820m5t3c0os605lfd7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
