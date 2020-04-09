@@ -24,7 +24,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.roger.catloadinglibrary.CatLoadingView;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +37,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cz.msebera.android.httpclient.Header;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -41,11 +46,13 @@ public class DashboardActivity extends AppCompatActivity {
     CatLoadingView mView;
     String[]items;
 // ...
+private static final String BASE_URL = "https://apisandbox.openbankproject.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
+
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -84,6 +91,58 @@ public class DashboardActivity extends AppCompatActivity {
         });
         //// COMPLETED SPINNER POPULATION
         //TODO BEGIN BALANCE INFORMATION FROM OPENAPI
+
+//        AsyncHttpClient client = new AsyncHttpClient();
+//        client.get(BASE_URL + "/obp/v4.0.0/banks/hsbc-test/balances", new AsyncHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+//                Log.d("gg",responseBody.toString());
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+//                Log.wtf("OO",responseBody.toString());
+//                error.printStackTrace();
+//            }
+//        });
+        new AsyncTask<Void, Void, String>() {
+
+            @Override
+            /**
+             * @return A String containing the json representing the available banks, or an error message
+             */
+            protected String doInBackground(Void... params) {
+                try {
+                    JSONObject banksJson = OBPRestClient.getBalance();
+                    return banksJson.toString();
+                } catch (ExpiredAccessTokenException e) {
+                    // login again / re-authenticate
+                    redoOAuth();
+                    return "";
+                } catch (ObpApiCallFailedException e) {
+                    return "Sorry, there was an error!";
+                }
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                Log.d("OKOKOKOK",result);
+                try {
+                    JSONObject result1 = new JSONObject(result);
+                    JSONObject balance1 = result1.getJSONObject("balance");
+                    String balance = balance1.getString("amount");
+                    TextView balancetext = findViewById(R.id.balance);
+                    balancetext.setText(balance);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }.execute();
+
+
+
+
+
 
 
 
@@ -182,4 +241,10 @@ public class DashboardActivity extends AppCompatActivity {
 
 
     }
+    private void redoOAuth() {
+        OBPRestClient.clearAccessToken(this);
+        Intent oauthActivity = new Intent(this, OAuthActivity.class);
+        startActivity(oauthActivity);
+    }
+
 }
