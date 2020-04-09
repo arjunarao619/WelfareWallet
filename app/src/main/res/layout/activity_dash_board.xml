@@ -74,8 +74,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/calibri"
+                    android:id = "@+id/accnumber"
                     android:textAlignment="center"
-                    android:text="Account Number: 1155112377"
+                    android:text="Account Number:"
                     android:textSize="23sp"
                     android:textStyle="bold" />
                 <Button

@@ -445,6 +445,12 @@ public class OBPRestClient {
 		return getOAuthedJson(BASE_URL + "/obp/v4.0.0/my/banks/hsbc-test/accounts/" + accountnumber + "/account");
 	}
 
+	public static JSONObject getAccountIds() throws ExpiredAccessTokenException,
+			ObpApiCallFailedException {
+		//return getOAuthedJson(BASE_URL + "/obp/v1.2/banks");
+		return getOAuthedJson(BASE_URL + "/obp/v4.0.0/banks/hsbc-test/accounts/account_ids/private");
+	}
+
 	
 
 }

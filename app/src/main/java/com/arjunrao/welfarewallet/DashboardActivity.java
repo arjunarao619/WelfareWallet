@@ -32,6 +32,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.roger.catloadinglibrary.CatLoadingView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -49,7 +51,8 @@ public class DashboardActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     CatLoadingView mView;
     String[]items;
-    String ACCOUNT_NUMBER;
+    String ACCOUNT_NUMBER = "9988776655";
+    String[] finallist;
 // ...
 private static final String BASE_URL = "https://apisandbox.openbankproject.com";
 
@@ -96,29 +99,17 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
         });
         //// COMPLETED SPINNER POPULATION
         //TODO BEGIN BALANCE INFORMATION FROM OPENAPI and current account number
-        getBalanceSimple();
+        getBalanceSimple(ACCOUNT_NUMBER);
         //TODO BEGIN DISPLAYING TRANSACTION HISTORY
 
         //TODO CHANGE ACCOUNT NUMBER FUNCTIONALITY
+        getAccountIdsSimple(); //WE NEED TO SPECIFY ACCOUNT NUMBER IN THE BEGINNING, TOO
         Button changeaccount = findViewById(R.id.changeaccount);
         changeaccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                final String[] colors = {"red", "green", "blue", "black"};
-                
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
-                builder.setTitle("Pick a color");
-                builder.setItems(colors, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ACCOUNT_NUMBER = colors[which];
-                        getBalanceSimple(ACCOUNT_NUMBER);
-                    }
-                });
-                builder.show();
-
+                getAccountIdsSimple();
 
             }
         });
@@ -264,5 +255,71 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
             }
         }.execute();
     }
+
+    private void getAccountIdsSimple(){
+
+        new AsyncTask<Void, Void, String>() {
+
+            @Override
+
+            protected String doInBackground(Void... params) {
+                try {
+                    JSONObject banksJson = OBPRestClient.getAccountIds();
+                    return banksJson.toString();
+                } catch (ExpiredAccessTokenException e) {
+                    // login again / re-authenticate
+                    redoOAuth();
+                    return "";
+                } catch (ObpApiCallFailedException e) {
+                    return "Sorry, there was an error!";
+                }
+            }
+            @Override
+            protected void onPostExecute(String result) {
+                Log.d("OKOKOKOK",result);
+                try {
+                    JSONObject accountIds = new JSONObject(result);
+                    Log.d("ACCOUNTCHANGESUCESFULL",result);
+                    JSONArray account_id_array = accountIds.getJSONArray("accounts");
+                    ArrayList<String> list = new ArrayList<>();
+
+                    if (account_id_array != null) {
+                        for (int i = 0; i < account_id_array.length(); i++) {
+                            JSONObject temp = account_id_array.getJSONObject(i);
+                            String str = (String) temp.getString("id");
+                            list.add(str);
+                        }
+                    }
+                    Object[] mStringArray = list.toArray();
+                    //final String[] finallist = new String[100];
+
+                   finallist = new String[mStringArray.length];
+                   System.arraycopy(mStringArray, 0, finallist, 0, mStringArray.length);
+
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
+                    builder.setTitle("Select an account number from bank HSBC-TEST");
+                    builder.setItems(finallist, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ACCOUNT_NUMBER = finallist[which];
+                            getBalanceSimple(ACCOUNT_NUMBER);
+                        }
+                    });
+                    builder.show();
+                    TextView accnumber = findViewById(R.id.accnumber);
+                    accnumber.setText("Account Number : " + ACCOUNT_NUMBER);
+
+
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+
+            }
+        }.execute();
+
+    }
+
+
 
 }
