@@ -1,11 +1,351 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashBoardActivity">
+    android:background="#f7f7f7"
+    tools:context=".DashboardActivity">
 
-    
 
-</RelativeLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="#f4f4f4"
+                app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="16dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/calibri"
+                    android:id="@+id/welcomename"
+                    android:layout_centerHorizontal="true"
+                    android:textAlignment="center"
+                    android:text="Welcome, Professor Chan!"
+                    android:textSize="24sp" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_below="@id/welcomename"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ckchan"
+
+
+
+                    app:civ_border_width="3dp"
+                    app:civ_border_color="#FF000000"/>
+
+
+                </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/calibri"
+                    android:textAlignment="center"
+                    android:text="My WelfareWallet Balance"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/calibri"
+                        android:text="22,860"
+                        android:id = "@+id/balance"
+                        android:textColor="#000000"
+                        android:textSize="40sp"
+                        android:layout_centerHorizontal="true"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:id = "@+id/currency"
+                        android:layout_toRightOf="@+id/balance"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="@font/calibri"
+                        android:text="HKD"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+                <!--<androidx.cardview.widget.CardView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="8dp"-->
+                    <!--app:cardCornerRadius="8dp"-->
+                    <!--app:cardUseCompatPadding="true"-->
+                    <!--app:contentPadding="16dp">-->
+
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:weightSum="100">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="30"-->
+                            <!--android:fontFamily="@font/calibri"-->
+                            <!--android:text="20,000"-->
+                            <!--android:textSize="16sp"-->
+                            <!--android:textStyle="bold" />-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="50"-->
+                            <!--android:fontFamily="@font/calibri"-->
+                            <!--android:text="for 12 months"-->
+                            <!--android:textAlignment="textEnd"-->
+                            <!--android:textSize="16sp"-->
+                            <!--android:textStyle="bold" />-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="20"-->
+                            <!--android:src="@drawable/ic_keyboard_arrow_down_gray_24dp" />-->
+
+                    <!--</LinearLayout>-->
+
+                <!--</androidx.cardview.widget.CardView>-->
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardUseCompatPadding="true"
+                    app:contentPadding="16dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="80"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="4dp"
+                                android:fontFamily="@font/calibri"
+                                android:text="View enrolled schemes"
+                                android:textColor="#ADADAD"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:fontFamily="@font/calibri"-->
+                                <!--android:text="No scheme"-->
+                                <!--android:textAlignment="textEnd"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="16sp"-->
+                                <!--android:textStyle="bold" />-->
+
+
+                        </LinearLayout>
+
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:layout_weight="20"-->
+                            <!--android:src="@drawable/ic_keyboard_arrow_down_gray_24dp" />-->
+
+                        <Spinner
+                            android:id="@+id/spinner1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:spinnerMode="dropdown"
+                            android:layout_marginStart="100dp"
+                            android:src="@drawable/ic_keyboard_arrow_down_gray_24dp" />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    app:cardBackgroundColor="#f4f4f4"
+                    app:cardCornerRadius="8dp"
+                    app:cardUseCompatPadding="true"
+                    app:contentPadding="16dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:fontFamily="@font/calibri"
+                            android:text="My expeses this month"
+                            android:textColor="#b8b8b8"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="30"
+                            android:fontFamily="@font/calibri"
+                            android:text="2100"
+                            android:textAlignment="textEnd"
+                            android:textSize="16sp"
+                            android:textColor="#000000"
+                            android:layout_marginRight="4dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="20"
+                            android:fontFamily="@font/calibri"
+                            android:text="HKD"
+                            android:textColor="#999999"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:layout_marginBottom="24dp">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/gift_img"
+                        android:layout_gravity="center"
+                        android:layout_weight="20"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="80"
+                        android:fontFamily="@font/calibri"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Your naxt welfare check can be collected on 14th May 2020"
+                        android:layout_gravity="center"
+                        android:textColor="#acacae"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/pay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/blackroundedbuttonshape"
+                    android:fontFamily="@font/calibri"
+                    android:text="Make a Payment using OpenAPI Sandbox"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+                <Button
+                    android:id="@+id/add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/blackroundedbuttonshape"
+                    android:fontFamily="@font/calibri"
+                    android:text="Add a new coupon to WelfareWallet"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+                <Button
+                    android:id="@+id/signout"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/signoutbutton"
+                    android:fontFamily="@font/calibri"
+                    android:text="Sign Out"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Intent intent = new Intent(MainActivity.this, DashBoardActivity.class);
+                    Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
                     intent.putExtra("USEREMAIL",user.getEmail());
                     intent.putExtra("USERIMAGE",user.getUid());
                     intent.putExtra("USERNAME",user.getDisplayName());
@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 mView.dismiss();
             }
         }, 3000);
+
 
 
         loginButton.setVisibility(View.GONE);
