@@ -1,8 +1,10 @@
 package com.arjunrao.welfarewallet;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,9 +12,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -45,6 +49,7 @@ public class DashboardActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     CatLoadingView mView;
     String[]items;
+    String ACCOUNT_NUMBER;
 // ...
 private static final String BASE_URL = "https://apisandbox.openbankproject.com";
 
@@ -90,54 +95,39 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
 
         });
         //// COMPLETED SPINNER POPULATION
-        //TODO BEGIN BALANCE INFORMATION FROM OPENAPI
+        //TODO BEGIN BALANCE INFORMATION FROM OPENAPI and current account number
+        getBalanceSimple();
+        //TODO BEGIN DISPLAYING TRANSACTION HISTORY
 
-//        AsyncHttpClient client = new AsyncHttpClient();
-//        client.get(BASE_URL + "/obp/v4.0.0/banks/hsbc-test/balances", new AsyncHttpResponseHandler() {
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-//                Log.d("gg",responseBody.toString());
-//            }
-//
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-//                Log.wtf("OO",responseBody.toString());
-//                error.printStackTrace();
-//            }
-//        });
-        new AsyncTask<Void, Void, String>() {
-
+        //TODO CHANGE ACCOUNT NUMBER FUNCTIONALITY
+        Button changeaccount = findViewById(R.id.changeaccount);
+        changeaccount.setOnClickListener(new View.OnClickListener() {
             @Override
-            /**
-             * @return A String containing the json representing the available banks, or an error message
-             */
-            protected String doInBackground(Void... params) {
-                try {
-                    JSONObject banksJson = OBPRestClient.getBalance();
-                    return banksJson.toString();
-                } catch (ExpiredAccessTokenException e) {
-                    // login again / re-authenticate
-                    redoOAuth();
-                    return "";
-                } catch (ObpApiCallFailedException e) {
-                    return "Sorry, there was an error!";
-                }
-            }
+            public void onClick(View view) {
 
-            @Override
-            protected void onPostExecute(String result) {
-                Log.d("OKOKOKOK",result);
-                try {
-                    JSONObject result1 = new JSONObject(result);
-                    JSONObject balance1 = result1.getJSONObject("balance");
-                    String balance = balance1.getString("amount");
-                    TextView balancetext = findViewById(R.id.balance);
-                    balancetext.setText(balance);
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
+                final String[] colors = {"red", "green", "blue", "black"};
+                
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
+                builder.setTitle("Pick a color");
+                builder.setItems(colors, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ACCOUNT_NUMBER = colors[which];
+                        getBalanceSimple(ACCOUNT_NUMBER);
+                    }
+                });
+                builder.show();
+
+
             }
-        }.execute();
+        });
+
+
+
+
+
+
 
 
 
@@ -167,11 +157,6 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
         TextView name1 = findViewById(R.id.welcomename);
         String joined = "Welcome, " +  name;
         name1.setText(joined);
-
-
-
-
-
         //on clicking signout
         Button signout = findViewById(R.id.signout);
         signout.setOnClickListener(new View.OnClickListener() {
@@ -245,6 +230,39 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
         OBPRestClient.clearAccessToken(this);
         Intent oauthActivity = new Intent(this, OAuthActivity.class);
         startActivity(oauthActivity);
+    }
+
+    private void getBalanceSimple(final String accountnumber){
+        new AsyncTask<Void, Void, String>() {
+
+            @Override
+
+            protected String doInBackground(Void... params) {
+                try {
+                    JSONObject banksJson = OBPRestClient.getBalance(accountnumber);
+                    return banksJson.toString();
+                } catch (ExpiredAccessTokenException e) {
+                    // login again / re-authenticate
+                    redoOAuth();
+                    return "";
+                } catch (ObpApiCallFailedException e) {
+                    return "Sorry, there was an error!";
+                }
+            }
+            @Override
+            protected void onPostExecute(String result) {
+                Log.d("OKOKOKOK",result);
+                try {
+                    JSONObject result1 = new JSONObject(result);
+                    JSONObject balance1 = result1.getJSONObject("balance");
+                    String balance = balance1.getString("amount");
+                    TextView balancetext = findViewById(R.id.balance);
+                    balancetext.setText(balance);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }.execute();
     }
 
 }
