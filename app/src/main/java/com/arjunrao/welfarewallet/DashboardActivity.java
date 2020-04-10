@@ -102,6 +102,15 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
         //TODO BEGIN BALANCE INFORMATION FROM OPENAPI and current account number
         getBalanceSimple(ACCOUNT_NUMBER);
         //TODO BEGIN DISPLAYING TRANSACTION HISTORY
+        Button transact = findViewById(R.id.transact);
+        transact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, TransactionActivity.class);
+                intent.putExtra("ACCOUNT_NUMBER",ACCOUNT_NUMBER);
+                startActivity(intent);
+            }
+        });
 
         //TODO CHANGE ACCOUNT NUMBER FUNCTIONALITY
         accnumber = findViewById(R.id.accnumber);
@@ -116,27 +125,6 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
 
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         Intent intent = getIntent();
         String email = intent.getStringExtra("USEREMAIL");

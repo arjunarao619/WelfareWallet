@@ -432,10 +432,10 @@ public class OBPRestClient {
 		return getOAuthedJson(BASE_URL + "/obp/v4.0.0/banks/hsbc-test/accounts-held");
 	}
 	//HSBC API
-	public static JSONObject getTransactions() throws ExpiredAccessTokenException,
+	public static JSONObject getTransactions(String accountnumber) throws ExpiredAccessTokenException,
 			ObpApiCallFailedException {
-		//return getOAuthedJson(BASE_URL + "/obp/v1.2/banks");
-		return getOAuthedJson(BASE_URL + "/obp/v3.1.0/banks/hsbc.01.hk.hsbc/accounts/9988776655/VIEW_ID/transactions");
+
+		return getOAuthedJson(BASE_URL + "/obp/v4.0.0/my/banks/hsbc-test/accounts/9988776655/transactions");
 	}
 
 	public static JSONObject getBalance(String accountnumber) throws ExpiredAccessTokenException,
