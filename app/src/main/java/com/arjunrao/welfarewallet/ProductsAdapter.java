@@ -3,14 +3,17 @@ package com.arjunrao.welfarewallet;
 import android.content.Context;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by Belal on 3/18/2018.
@@ -49,12 +52,22 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 //            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
 //        }
 
+
         holder.textViewTitle.setText(product.getTitle());
         holder.textViewShortDesc.setText(product.getShortdesc());
         holder.textviewPrice.setText(String.valueOf(product.getPrice()));
         holder.textViewRating.setText(String.valueOf(product.getRating()));
         holder.textViewComments.setText(String.valueOf(product.getComments()));
         holder.textViewBalance.setText(String.valueOf(product.getBalance()));
+        //Log.d("yy",String.valueOf(product.getComments()));
+        boolean issubsidy = Pattern.matches("^(Comments: subsidy).*$",product.getComments());
+        if(issubsidy && !product.getBalance().contains("-")){
+            Log.d("yy",String.valueOf(product.getComments()));
+            holder.textViewSubsidy.setVisibility(View.VISIBLE);
+            holder.textViewSubsidy.setText(product.getComments());
+
+        }
+
 
 //        holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage(), null));
     }
@@ -67,7 +80,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
         //ImageView imageView;
-        TextView textViewTitle, textViewShortDesc, textViewRating, textviewPrice,textViewComments,textViewBalance;
+        TextView textViewTitle, textViewShortDesc, textViewRating, textviewPrice,textViewComments,textViewBalance,textViewSubsidy;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -79,6 +92,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             textviewPrice = itemView.findViewById(R.id.textViewPrice);
             textViewComments = itemView.findViewById(R.id.textViewComments);
             textViewBalance = itemView.findViewById(R.id.textViewBalance);
+            textViewSubsidy = itemView.findViewById(R.id.textViewSubsidy);
 
 
         }

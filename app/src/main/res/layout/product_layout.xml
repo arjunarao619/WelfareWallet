@@ -20,7 +20,7 @@
                 android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/subsidy"
+                android:layout_below="@id/textViewSubsidy"
                 android:layout_marginLeft="5dp"
                 android:textSize="20sp"
                 android:padding = "5dp"
@@ -80,7 +80,7 @@
                 android:textAlignment="center"
                 android:textColor="#ffffff"
 
-                android:id="@+id/subsidy"
+                android:id="@+id/textViewSubsidy"
                 android:text = "Subsidy Payment"/>
             <TextView
                 android:layout_width="match_parent"

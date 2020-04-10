@@ -50,7 +50,9 @@ public class TransactionActivity extends AppCompatActivity {
                 protected String doInBackground(Void... params) {
                     try {
                         JSONObject banksJson = OBPRestClient.getTransactions(accountnumber);
+                        Log.d("INSIDE ASYNCTASK",banksJson.toString());
                         return banksJson.toString();
+
                     } catch (ExpiredAccessTokenException e) {
                         // login again / re-authenticate
                         redoOAuth();
@@ -96,8 +98,12 @@ public class TransactionActivity extends AppCompatActivity {
                                 date = "Date: " + date;
                                 balance = "Balance: " + balance + " HKD";
                                 comments = "Comments: " + comments;
-
-                                Product p = new Product(from,to,amount,date,comments,balance);
+                                Product p;
+                                if(comments.equals("subsidy")){
+                                     p = new Product(from,to,amount,date,comments,balance,true);}
+                                else{
+                                    p = new Product(from,to,amount,date,comments,balance,false);
+                                }
                                 productList.add(p);
 
                             }

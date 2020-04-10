@@ -12,13 +12,17 @@ public class Product {
     private String rating;
     private String comments;
     private String balance;
+    private boolean subsidy;
     public Product(){
 
     }
 
 
+    public boolean isSubsidy() {
+        return subsidy;
+    }
 
-    public Product(String title, String shortDesc, String price, String rating, String comments, String balance) {
+    public Product(String title, String shortDesc, String price, String rating, String comments, String balance, boolean subsidy) {
         //this.image = image;
         this.title = title;
         this.shortdesc = shortDesc;
@@ -26,6 +30,7 @@ public class Product {
         this.rating = rating;
         this.comments = comments;
         this.balance = balance;
+        this.subsidy = subsidy;
     }
 
   //  public String getImage() {
