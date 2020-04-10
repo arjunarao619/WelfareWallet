@@ -53,6 +53,7 @@ public class DashboardActivity extends AppCompatActivity {
     String[]items;
     String ACCOUNT_NUMBER = "9988776655";
     String[] finallist;
+    TextView accnumber;
 // ...
 private static final String BASE_URL = "https://apisandbox.openbankproject.com";
 
@@ -103,6 +104,8 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
         //TODO BEGIN DISPLAYING TRANSACTION HISTORY
 
         //TODO CHANGE ACCOUNT NUMBER FUNCTIONALITY
+        accnumber = findViewById(R.id.accnumber);
+        accnumber.setText("Account Number : 000");
         getAccountIdsSimple(); //WE NEED TO SPECIFY ACCOUNT NUMBER IN THE BEGINNING, TOO
         Button changeaccount = findViewById(R.id.changeaccount);
         changeaccount.setOnClickListener(new View.OnClickListener() {
@@ -304,11 +307,12 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
                         public void onClick(DialogInterface dialog, int which) {
                             ACCOUNT_NUMBER = finallist[which];
                             getBalanceSimple(ACCOUNT_NUMBER);
+                            accnumber.setText("Account Number : " + ACCOUNT_NUMBER);
                         }
                     });
                     builder.show();
-                    TextView accnumber = findViewById(R.id.accnumber);
-                    accnumber.setText("Account Number : " + ACCOUNT_NUMBER);
+
+
 
 
                 }catch (JSONException e){
