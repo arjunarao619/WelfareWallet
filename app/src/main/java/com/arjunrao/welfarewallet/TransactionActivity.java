@@ -1,6 +1,8 @@
 package com.arjunrao.welfarewallet;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +25,8 @@ public class TransactionActivity extends AppCompatActivity {
     ProductsAdapter adapter;
     List<Product> productList;
     String ACCOUNT_NUMBER = "9988776655";
-    String amount,from,to,date,subsidy;
+    String amount,from,to,date,subsidy,comments,balance;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +34,10 @@ public class TransactionActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         ACCOUNT_NUMBER = intent.getStringExtra("ACCOUNT_NUMBER");
+        ActionBar a = getSupportActionBar();
+        a.setTitle(ACCOUNT_NUMBER + ": Transaction History");
 
         getTransactionSimple(ACCOUNT_NUMBER);
-
-
-
-
-
-
 
 
     }
@@ -77,6 +76,9 @@ public class TransactionActivity extends AppCompatActivity {
 
                                 amount = temp.getJSONObject("details").getJSONObject("value").getString("amount");
                                 date = temp.getJSONObject("details").getString("completed");
+                                balance = temp.getJSONObject("details").getJSONObject("new_balance").getString("amount");
+                                comments = temp.getJSONObject("details").getString("description");
+
                                 if(Double.parseDouble(amount) < 0.0){
                                     from = temp.getJSONObject("this_account").getString("id");
                                     to = temp.getJSONObject("other_account").getJSONObject("holder").getString("name");
@@ -88,12 +90,14 @@ public class TransactionActivity extends AppCompatActivity {
 
                                 }
                                 //we now have from,to,amount,date write it to the object
+                                from = "From: " + from;
+                                to = "To: " + to;
+                                amount = "Amount: " + amount + " HKD";
+                                date = "Date: " + date;
+                                balance = "Balance: " + balance + " HKD";
+                                comments = "Comments: " + comments;
 
-
-
-
-
-                                Product p = new Product(from,to,amount,date);
+                                Product p = new Product(from,to,amount,date,comments,balance);
                                 productList.add(p);
 
                             }

@@ -6,15 +6,15 @@
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        android:backgroundTint="#eceff1">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp">
-
-
 
             <TextView
                 android:id="@+id/textViewTitle"
@@ -23,9 +23,10 @@
                 android:layout_below="@id/subsidy"
                 android:layout_marginLeft="5dp"
                 android:textSize="20sp"
+                android:padding = "5dp"
                 android:text="From: "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                 />
 
             <TextView
                 android:id="@+id/textViewShortDesc"
@@ -33,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewTitle"
                 android:layout_marginLeft="5dp"
+                android:padding = "10dp"
                 android:layout_marginTop="5dp"
                 android:textSize="20sp"
                 android:text="To: "
@@ -41,6 +43,7 @@
             <TextView
                 android:id="@+id/textViewRating"
                 android:layout_width="wrap_content"
+                android:padding = "10dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewShortDesc"
                 android:layout_marginLeft="5dp"
@@ -58,6 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewRating"
+                android:padding = "10dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_alignParentRight="true"
@@ -69,14 +73,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+                android:padding = "8dp"
                 android:background="#43a047"
                 android:textStyle="bold"
                 android:visibility="invisible"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
-                android:padding = "8dp"
+
                 android:id="@+id/subsidy"
                 android:text = "Subsidy Payment"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewPrice"
+                android:text="Comments: "
+                android:id = "@+id/textViewComments"
+                android:padding = "5dp"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewComments"
+                android:text="Balance: "
+                android:padding = "10dp"
+                android:id = "@+id/textViewBalance"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:textAlignment="textEnd"/>
 
 
         </RelativeLayout>

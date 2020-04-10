@@ -2,6 +2,7 @@ package com.arjunrao.welfarewallet;
 
 import android.content.Context;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,11 +37,25 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         Product product = productList.get(position);
+        //TODO figure out alternating colors on cardviews
+//        if(position %2 == 0)
+//        {
+//            holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
+//            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+//        }
+//        else
+//        {
+//            holder.itemView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
+//            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
+//        }
 
         holder.textViewTitle.setText(product.getTitle());
         holder.textViewShortDesc.setText(product.getShortdesc());
         holder.textviewPrice.setText(String.valueOf(product.getPrice()));
         holder.textViewRating.setText(String.valueOf(product.getRating()));
+        holder.textViewComments.setText(String.valueOf(product.getComments()));
+        holder.textViewBalance.setText(String.valueOf(product.getBalance()));
+
 //        holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage(), null));
     }
 
@@ -52,7 +67,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
         //ImageView imageView;
-        TextView textViewTitle, textViewShortDesc, textViewRating, textviewPrice;
+        TextView textViewTitle, textViewShortDesc, textViewRating, textviewPrice,textViewComments,textViewBalance;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -62,6 +77,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             textViewShortDesc = itemView.findViewById(R.id.textViewShortDesc);
             textViewRating = itemView.findViewById(R.id.textViewRating);
             textviewPrice = itemView.findViewById(R.id.textViewPrice);
+            textViewComments = itemView.findViewById(R.id.textViewComments);
+            textViewBalance = itemView.findViewById(R.id.textViewBalance);
 
 
         }
