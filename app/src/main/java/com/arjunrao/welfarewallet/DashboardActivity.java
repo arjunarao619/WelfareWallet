@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +36,7 @@ import com.roger.catloadinglibrary.CatLoadingView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -63,7 +65,19 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
         setContentView(R.layout.activity_dash_board);
 
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final PullRefreshLayout layout = (PullRefreshLayout) findViewById(R.id.swipeRefreshLayout2);
+
+        // listen refresh event
+                layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        getBalanceSimple(ACCOUNT_NUMBER);
+                        layout.setRefreshing(false);
+                    }
+                });
+
+        // refresh complete
+                layout.setRefreshing(false);
 
         ////// begin spinner population
         mDatabase = FirebaseDatabase.getInstance().getReference("EnrolledSchemes");
@@ -290,15 +304,20 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
                     builder.setTitle("Select an account number from bank HSBC-TEST");
+                    builder.setCancelable(false);
+
                     builder.setItems(finallist, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+
                             ACCOUNT_NUMBER = finallist[which];
                             getBalanceSimple(ACCOUNT_NUMBER);
                             accnumber.setText("Account Number : " + ACCOUNT_NUMBER);
                         }
                     });
                     builder.show();
+
+
 
 
 

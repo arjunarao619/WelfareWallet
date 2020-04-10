@@ -52,7 +52,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 //            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
 //        }
 
-
         holder.textViewTitle.setText(product.getTitle());
         holder.textViewShortDesc.setText(product.getShortdesc());
         holder.textviewPrice.setText(String.valueOf(product.getPrice()));

@@ -13,6 +13,8 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.arjunrao.welfarewallet.R;
+import com.baoyz.widget.PullRefreshLayout;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,11 +34,28 @@ public class TransactionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
 
+        final PullRefreshLayout layout = (PullRefreshLayout) findViewById(R.id.refresh_layout);
+
+        // listen refresh event
+        layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getTransactionSimple(ACCOUNT_NUMBER);
+                layout.setRefreshing(false);
+            }
+        });
+
+        // refresh complete
+        layout.setRefreshing(false);
+
+
+
+
+
         Intent intent = getIntent();
         ACCOUNT_NUMBER = intent.getStringExtra("ACCOUNT_NUMBER");
         ActionBar a = getSupportActionBar();
         a.setTitle(ACCOUNT_NUMBER + ": Transaction History");
-
         getTransactionSimple(ACCOUNT_NUMBER);
 
 
