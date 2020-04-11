@@ -27,51 +27,89 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:cardBackgroundColor="#f4f4f4"
-                app:cardCornerRadius="8dp"
-                app:cardUseCompatPadding="true"
-                app:contentPadding="16dp">
+            <!--<androidx.cardview.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--app:cardBackgroundColor="#f4f4f4"-->
+                <!--app:cardCornerRadius="8dp"-->
+                <!--app:cardUseCompatPadding="true"-->
+                <!--app:contentPadding="16dp">-->
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="100">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:weightSum="100">-->
 
-                <TextView
-                    android:layout_width="match_parent"
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="15dp"-->
+                    <!--android:fontFamily="@font/calibri"-->
+                    <!--android:id="@+id/welcomename"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:text="Welcome, Professor Chan!"-->
+                    <!--android:textSize="15sp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:paddingStart="20dp"-->
+                    <!--/>-->
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                    <!--android:id="@+id/profile_image"-->
+                    <!--android:layout_width="80dp"-->
+                    <!--android:layout_height="80dp"-->
+                    <!--android:layout_toLeftOf="@id/welcomename"-->
+
+                    <!--android:src="@drawable/ckchan"-->
+
+
+
+                    <!--app:civ_border_width="3dp"-->
+                    <!--app:civ_border_color="#FF000000"/>-->
+
+
+                <!--</RelativeLayout>-->
+                <!--</androidx.cardview.widget.CardView>-->
+
+
+                <LinearLayout
+                    android:background="#ffffff"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:fontFamily="@font/calibri"
-                    android:id="@+id/welcomename"
-                    android:layout_centerHorizontal="true"
-                    android:textAlignment="center"
-                    android:text="Welcome, Professor Chan!"
-                    android:textSize="24sp" />
-                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/profile_image"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:layout_below="@id/welcomename"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/ckchan"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_toLeftOf="@id/welcomename"
+
+                    android:src="@drawable/ckchan">
+
+                    </de.hdodenhof.circleimageview.CircleImageView>
 
 
+                    <TextView
+                        android:id="@+id/welcomename"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_gravity="center"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:text="Welcome, Professor Chan" />
 
-                    app:civ_border_width="3dp"
-                    app:civ_border_color="#FF000000"/>
-
-
-                </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-
-
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -135,49 +173,7 @@
 
                 </RelativeLayout>
 
-                <!--<androidx.cardview.widget.CardView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginBottom="8dp"-->
-                    <!--app:cardCornerRadius="8dp"-->
-                    <!--app:cardUseCompatPadding="true"-->
-                    <!--app:contentPadding="16dp">-->
-
-
-                    <!--<LinearLayout-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="horizontal"-->
-                        <!--android:weightSum="100">-->
-
-                        <!--<TextView-->
-                            <!--android:layout_width="0dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_weight="30"-->
-                            <!--android:fontFamily="@font/calibri"-->
-                            <!--android:text="20,000"-->
-                            <!--android:textSize="16sp"-->
-                            <!--android:textStyle="bold" />-->
-
-                        <!--<TextView-->
-                            <!--android:layout_width="0dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_weight="50"-->
-                            <!--android:fontFamily="@font/calibri"-->
-                            <!--android:text="for 12 months"-->
-                            <!--android:textAlignment="textEnd"-->
-                            <!--android:textSize="16sp"-->
-                            <!--android:textStyle="bold" />-->
-
-                        <!--<ImageView-->
-                            <!--android:layout_width="0dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_weight="20"-->
-                            <!--android:src="@drawable/ic_keyboard_arrow_down_gray_24dp" />-->
-
-                    <!--</LinearLayout>-->
-
-                <!--</androidx.cardview.widget.CardView>-->
+                <!---->
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -273,6 +269,8 @@
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"

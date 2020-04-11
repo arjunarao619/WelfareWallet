@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.baoyz.widget.PullRefreshLayout android:id="@+id/swipeRefreshLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.core.widget.NestedScrollView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:animateLayoutChanges="true"
+            android:id="@+id/ll_container"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:background="@color/primary_dark"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/default_padding">
+
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="start"
+                    android:id="@+id/profile_image"
+                    android:src="@drawable/ckchan">
+
+                </de.hdodenhof.circleimageview.CircleImageView>
+
+                <TextView
+                    android:id="@+id/welcomename"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:textColor="#ffffff"
+                    android:textAlignment="center"
+                    android:padding="15dp"
+                    android:textSize="@dimen/text_headline"
+                    android:text="Welcome, Professor Chan"/>
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:background="@android:color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/default_margin">
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="1"
+                        android:paddingBottom="@dimen/default_margin"
+                        android:paddingEnd="@dimen/default_padding"
+                        android:paddingLeft="@dimen/default_padding"
+                        android:paddingRight="@dimen/default_padding"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingTop="@dimen/default_margin">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.99"
+
+                            android:layout_width="0dp"
+                            android:text="My WelfareWallet Account"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                            />
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_weight="0.01"
+                            android:id="@+id/changeaccount"
+                            android:background="@drawable/accountchange"
+                            />
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_account_detail"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/default_margin">
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:id="@+id/ll_total_savings"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:orientation="vertical"
+                            android:padding="@dimen/default_margin">
+
+                            <TextView
+                                android:gravity="center"
+                                android:id="@+id/balance"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textColor="#4caf50"
+                                android:textStyle="bold"
+
+                                android:text="2000 HKD"/>
+
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/divider_margin"
+                                android:layout_width="wrap_content"
+                                android:text="WelfareWallet Balance"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                        </LinearLayout>
+
+                        <View
+                            android:background="#424242"
+                            android:layout_height="match_parent"
+                            android:layout_width="1dp"/>
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:id="@+id/ll_total_loan"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:orientation="vertical"
+                            android:padding="@dimen/default_margin">
+
+                            <TextView
+                                android:gravity="center"
+                                android:id="@+id/accnumber"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:textAppearance="?android:textAppearanceMedium"
+
+                                android:textStyle="bold"
+                                android:text="9988776655"/>
+
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/divider_margin"
+                                android:layout_width="wrap_content"
+                                android:text="Account Number"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_height="match_parent"
+
+                        android:layout_marginBottom="@dimen/margin_4dp"
+                        android:layout_marginLeft="@dimen/margin_4dp"
+                        android:layout_marginStart="@dimen/margin_4dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content">
+
+                        <LinearLayout
+                            android:background="@android:color/white"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:id="@+id/ll_accounts"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:padding="@dimen/default_padding">
+
+                            <ImageButton
+                                android:layout_height="56dp"
+                                android:background="@drawable/account_details"
+                                android:layout_width="56dp"
+                                android:id = "@+id/accountdetails"
+
+                               />
+
+                            <TextView
+                                android:gravity="center"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/divider_margin"
+                                android:layout_width="match_parent"
+                                android:text="Account Details"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/margin_4dp"
+                        android:layout_marginLeft="@dimen/margin_4dp"
+                        android:layout_marginStart="@dimen/margin_4dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:layout_width="wrap_content">
+
+                        <LinearLayout
+                            android:background="@android:color/white"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:id="@+id/ll_transfer"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:padding="@dimen/default_padding">
+
+                            <ImageButton
+                                android:layout_height="56dp"
+                                android:layout_width="56dp"
+                                android:id="@+id/pay"
+                                android:background="@drawable/transfer"/>
+
+                            <TextView
+                                android:gravity="center"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/divider_margin"
+                                android:layout_width="match_parent"
+                                android:text="Transfer Using OpenBank API"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:weightSum="3">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/margin_4dp"
+                        android:layout_marginLeft="@dimen/margin_4dp"
+                        android:layout_marginStart="@dimen/margin_4dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content">
+
+                        <LinearLayout
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:id="@+id/ll_apply_for_loan"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:padding="@dimen/default_padding">
+
+                            <ImageButton
+                                android:layout_height="56dp"
+                                android:layout_width="56dp"
+                                android:id="@+id/transact"
+                               android:background="@drawable/transaction"/>
+
+                            <TextView
+                                android:gravity="center"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/divider_margin"
+                                android:layout_width="match_parent"
+                                android:text="View Transaction History"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/margin_4dp"
+                        android:layout_marginLeft="@dimen/margin_4dp"
+                        android:layout_marginStart="@dimen/margin_4dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content">
+
+                        <LinearLayout
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:id="@+id/ll_beneficiaries"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:padding="@dimen/default_padding">
+
+                            <ImageButton
+                                android:layout_height="56dp"
+                                android:id="@+id/view_enrolled"
+                                android:layout_width="56dp"
+                                android:background="@drawable/subsidies"/>
+
+                            <TextView
+                                android:gravity="center"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/divider_margin"
+                                android:layout_width="match_parent"
+                                android:text="View enrolled Subsidy schemes"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/margin_4dp"
+                        android:layout_marginLeft="@dimen/margin_4dp"
+                        android:layout_marginStart="@dimen/margin_4dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content">
+
+                        <LinearLayout
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:id="@+id/signoutcard"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:padding="@dimen/default_padding">
+
+                            <ImageButton
+                                android:layout_height="56dp"
+                                android:layout_width="56dp"
+                                android:id="@+id/signout"
+                                android:background="@drawable/signout"/>
+
+                            <TextView
+                                android:gravity="center"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/divider_margin"
+                                android:layout_width="match_parent"
+                                android:text="Sign Out"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:layout_marginBottom="4dp">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/gift_img"
+                    android:layout_gravity="center"
+                    android:layout_weight="20"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="80"
+                    android:fontFamily="@font/calibri"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="Your naxt welfare cheque can be collected on 14th May 2020"
+                    android:layout_gravity="center"
+                    android:textColor="#acacae"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/default_padding"
+                android:paddingTop="@dimen/default_padding">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/row_padding_right"
+                    android:layout_marginStart="@dimen/row_padding_right"
+                    android:layout_marginTop="@dimen/divider_margin"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:text="Developed for FTEC 3002\nIntroduction to Financial Infrastructures"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/row_padding_right"
+                    android:layout_marginRight="@dimen/row_padding_right"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:autoLink="phone"
+                        android:gravity="end"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/divider_margin"
+                        android:layout_width="match_parent"
+                        android:textSize="15sp"
+                        android:text="Group 5\nArjun Ashok Rao\nMahesh Menon\nWong Wai Sze\nNG Yi Hin"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textStyle="bold"/>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</com.baoyz.widget.PullRefreshLayout>

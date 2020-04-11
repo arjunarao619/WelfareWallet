@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -62,8 +64,8 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_board);
-
+        setContentView(R.layout.activity_dashboard2);
+        getSupportActionBar().setTitle("WelfareWallet Dashboard");
 
                 final PullRefreshLayout layout = (PullRefreshLayout) findViewById(R.id.swipeRefreshLayout2);
 
@@ -80,11 +82,21 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
                 layout.setRefreshing(false);
 
         //initiate transation TODO
-        Button pay = findViewById(R.id.pay);
+        ImageButton pay = findViewById(R.id.pay);
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DashboardActivity.this,PaymentActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton details = findViewById(R.id.accountdetails);
+        details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, DetailsActivity.class);
+                intent.putExtra("ACCOUNT_NUMBER",ACCOUNT_NUMBER);
                 startActivity(intent);
             }
         });
@@ -110,10 +122,10 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
 
 
                 }
-                Spinner areaSpinner = (Spinner) findViewById(R.id.spinner1);
-                ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(DashboardActivity.this, android.R.layout.simple_spinner_item, areas);
-                areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                areaSpinner.setAdapter(areasAdapter);
+//                Spinner areaSpinner = (Spinner) findViewById(R.id.spinner1);
+//                ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(DashboardActivity.this, android.R.layout.simple_spinner_item, areas);
+//                areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                areaSpinner.setAdapter(areasAdapter);
 
             }
 
@@ -127,7 +139,7 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
         //TODO BEGIN BALANCE INFORMATION FROM OPENAPI and current account number
         getBalanceSimple(ACCOUNT_NUMBER);
         //TODO BEGIN DISPLAYING TRANSACTION HISTORY
-        Button transact = findViewById(R.id.transact);
+        ImageButton transact = findViewById(R.id.transact);
         transact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,7 +153,7 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
         accnumber = findViewById(R.id.accnumber);
         accnumber.setText("Account Number : 000");
         getAccountIdsSimple(); //WE NEED TO SPECIFY ACCOUNT NUMBER IN THE BEGINNING, TOO
-        Button changeaccount = findViewById(R.id.changeaccount);
+        ImageButton changeaccount = findViewById(R.id.changeaccount);
         changeaccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,7 +177,7 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
         String joined = "Welcome, " +  name;
         name1.setText(joined);
         //on clicking signout
-        Button signout = findViewById(R.id.signout);
+        ImageButton signout = findViewById(R.id.signout);
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
