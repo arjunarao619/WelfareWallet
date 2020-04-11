@@ -89,6 +89,7 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DashboardActivity.this,PaymentActivity.class);
+                intent.putExtra("ACCOUNT_NUMBER",ACCOUNT_NUMBER);
                 startActivity(intent);
             }
         });

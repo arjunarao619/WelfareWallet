@@ -1,9 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
     android:layout_height="match_parent"
-    tools:context=".PaymentActivity">
+    android:layout_width="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/view_flipper"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:padding="@dimen/default_padding"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            style="@style/LinearLayout.Base"
+            android:id="@+id/ll_application_beneficiary"
+            android:visibility="visible">
+
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_account_number"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingTop="@dimen/default_margin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:gravity="start"
+                    android:hint="From : Account Number"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:id = "@+id/fromedit"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:maxLines="1"
+                    android:paddingBottom="16dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_office_name"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingTop="@dimen/default_margin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:gravity="start"
+                    android:hint="To: Account Number"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:id = "@+id/toedit"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:maxLines="1"
+                    android:paddingBottom="16dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_transfer_limit"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingTop="@dimen/default_margin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:gravity="start"
+                    android:hint="Transfer Amount"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:id = "@+id/amountedit"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:maxLength="9"
+                    android:maxLines="1"
+                    android:paddingBottom="16dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_beneficiary_name"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingTop="@dimen/default_margin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:gravity="start"
+                    android:hint="Remarks"
+                    android:id="@+id/remarksedit"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:maxLines="1"
+                    android:paddingBottom="16dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/Button.Base"
+                android:id="@+id/pay"
+                android:layout_marginTop="10dp"
+                android:background="@color/primaryy"
+                android:text="Make Payment"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        layout="@layout/layout_sweet_exception_handler"
+        android:id="@+id/layout_error"
+        android:visibility="gone"/>
+
+</RelativeLayout>

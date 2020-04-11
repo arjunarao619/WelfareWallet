@@ -206,7 +206,7 @@ public class OBPRestClient {
 
 	}
 
-	public static JSONObject getOAuthedJsonPost(String urlString)
+	public static JSONObject getOAuthedJsonPost(String urlString,String accountto,String amount,String remarks)
 			throws ExpiredAccessTokenException, ObpApiCallFailedException {
 
 		try {
@@ -215,17 +215,9 @@ public class OBPRestClient {
 			consumer.sign(request);
 			request.setHeader("Accept", "application/json");
 			request.setHeader("Content-type", "application/json");
-			String inputJson = "{\n" +
-					"    \"to\": {\n" +
-					"        \"bank_id\": \"hsbc-test\",\n" +
-					"        \"account_id\": \"9988776655\"\n" +
-					"    },\n" +
-					"    \"value\": {\n" +
-					"        \"currency\": \"HKD\",\n" +
-					"        \"amount\": \"211\"\n" +
-					"    },\n" +
-					"    \"description\": \"refund\"\n" +
-					"}";
+
+			String inputJson = "{  \"to\":{    \"bank_id\":\"hsbc-test\",    \"account_id\":" + "\""+accountto+"\""+"  },  \"value\":{    \"currency\":\"HKD\",    \"amount\":" +"\""+ amount+"\""+ "  },  \"description\":" + "\"" + remarks +"\"" + "}";
+			Log.wtf("STRING",inputJson);
 			StringEntity stringEntity = new StringEntity(inputJson);
 			request.setEntity(stringEntity);
 
