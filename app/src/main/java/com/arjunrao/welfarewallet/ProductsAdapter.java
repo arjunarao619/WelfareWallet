@@ -3,13 +3,16 @@ package com.arjunrao.welfarewallet;
 import android.content.Context;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -40,17 +43,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         Product product = productList.get(position);
-        //TODO figure out alternating colors on cardviews
-//        if(position %2 == 0)
-//        {
-//            holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
-//            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-//        }
-//        else
-//        {
-//            holder.itemView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
-//            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
-//        }
+
 
         holder.textViewTitle.setText(product.getTitle());
         holder.textViewShortDesc.setText(product.getShortdesc());
@@ -66,6 +59,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             holder.textViewSubsidy.setText(product.getComments());
 
         }
+//        if(product.getBalance().contains("-")){
+//            Log.d("ok","ok");
+//            holder.imageviewcreditordebit.setBackgroundResource(R.drawable.ic_arrow_downward_black_24dp);
+//            holder.imageviewcreditordebit.setVisibility(View.VISIBLE);
+//        }
 
 
 //        holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage(), null));
@@ -80,6 +78,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 
         //ImageView imageView;
         TextView textViewTitle, textViewShortDesc, textViewRating, textviewPrice,textViewComments,textViewBalance,textViewSubsidy;
+                ImageView imageviewcreditordebit;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -92,6 +91,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             textViewComments = itemView.findViewById(R.id.textViewComments);
             textViewBalance = itemView.findViewById(R.id.textViewBalance);
             textViewSubsidy = itemView.findViewById(R.id.textViewSubsidy);
+            imageviewcreditordebit = itemView.findViewById(R.id.creditordebit);
 
 
         }

@@ -39,6 +39,14 @@
                 android:textSize="20sp"
                 android:text="To: "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96sp"
+                android:visibility="invisible"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/creditordebit"
+                android:background="@drawable/ic_arrow_upward_black_24dp"
+                android:layout_margin = "8dp"/>
 
             <TextView
                 android:id="@+id/textViewRating"

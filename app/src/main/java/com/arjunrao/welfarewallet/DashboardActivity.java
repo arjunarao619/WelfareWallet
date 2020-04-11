@@ -26,6 +26,7 @@ import com.baoyz.widget.PullRefreshLayout;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,11 +56,14 @@ public class DashboardActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     CatLoadingView mView;
     String[]items;
+    private FirebaseAuth mAuth;
+
     String ACCOUNT_NUMBER = "9988776655";
     String[] finallist;
     TextView accnumber;
     String image;
     String name;
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
 // ...
 private static final String BASE_URL = "https://apisandbox.openbankproject.com";
 
@@ -180,8 +184,15 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
         CircleImageView imageView = findViewById(R.id.profile_image);
         imageView.setImageBitmap(profile_picture);
 
-        TextView name1 = findViewById(R.id.welcomename);
-        String joined = "Welcome, " +  name;
+        final TextView name1 = findViewById(R.id.welcomename);
+        FirebaseAuth mAuth;
+
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
+
+        String joined = "Welcome, " +  user.getDisplayName();
         name1.setText(joined);
         //on clicking signout
         ImageButton signout = findViewById(R.id.signout);

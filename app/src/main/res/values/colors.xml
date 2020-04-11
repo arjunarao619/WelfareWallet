@@ -72,4 +72,6 @@
         <item>@color/red_light</item>
         <item>@color/orange_light</item>
     </array>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

@@ -48,7 +48,16 @@ public class PaymentActivity extends AppCompatActivity {
 
                 amountedit = findViewById(R.id.amountedit);
                 amount = amountedit.getText().toString();
-                createSimpleTransaction(ACCOUNT_NUMBER,accountto,amount,remarks);
+
+                Intent intent = new Intent(PaymentActivity.this, ConfirmTransferActivity.class);
+                intent.putExtra("ACCOUNT_NUMBER",ACCOUNT_NUMBER);
+                intent.putExtra("to",accountto);
+                intent.putExtra("amount",amount);
+                intent.putExtra("remarks",remarks);
+
+                startActivity(intent);
+
+                //createSimpleTransaction(ACCOUNT_NUMBER,accountto,amount,remarks);
 
             }
         });
@@ -62,42 +71,6 @@ public class PaymentActivity extends AppCompatActivity {
 
     }
 
-    private void createSimpleTransaction(final String accountfrom, final String accountto, final String amount, final String remarks){
-        new AsyncTask<Void, Void, String>() {
 
-            @Override
-
-            protected String doInBackground(Void... params) {
-                try {
-                    Log.w("DETAILS",accountfrom + " " + accountto+ " " + amount + " " + remarks);
-                    JSONObject banksJson = OBPRestClient.getOAuthedJsonPost("https://apisandbox.openbankproject.com/obp/v4.0.0/banks/hsbc-test/accounts/" + accountfrom + "/owner/transaction-request-types/SANDBOX_TAN/transaction-requests",accountto,amount,remarks);
-
-                    return banksJson.toString();
-                } catch (ExpiredAccessTokenException e) {
-                    // login again / re-authenticate
-                    redoOAuth();
-                    return "";
-                } catch (ObpApiCallFailedException e) {
-                    return "Sorry, there was an error!";
-                }
-            }
-            @Override
-            protected void onPostExecute(String result) {
-                Log.d("OKOKOKOK",result);
-                try {
-                    Log.d("PERFECT",result);
-
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-            }
-        }.execute();
-    }
-
-    private void redoOAuth() {
-        OBPRestClient.clearAccessToken(this);
-        Intent oauthActivity = new Intent(this, OAuthActivity.class);
-        startActivity(oauthActivity);
-    }
 
 }
