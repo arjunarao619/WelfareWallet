@@ -48,16 +48,11 @@ public class TransactionActivity extends AppCompatActivity {
         // refresh complete
         layout.setRefreshing(false);
 
-
-
-
-
         Intent intent = getIntent();
         ACCOUNT_NUMBER = intent.getStringExtra("ACCOUNT_NUMBER");
         ActionBar a = getSupportActionBar();
         a.setTitle(ACCOUNT_NUMBER + ": Transaction History");
         getTransactionSimple(ACCOUNT_NUMBER);
-
 
     }
 

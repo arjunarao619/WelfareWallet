@@ -79,6 +79,17 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
         // refresh complete
                 layout.setRefreshing(false);
 
+        //initiate transation TODO
+        Button pay = findViewById(R.id.pay);
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this,PaymentActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         ////// begin spinner population
         mDatabase = FirebaseDatabase.getInstance().getReference("EnrolledSchemes");
 

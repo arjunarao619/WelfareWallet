@@ -265,7 +265,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
 
-                            android:background="@drawable/whiteroundedbuttonshape"
+                            android:background="@drawable/signoutbutton"
+                            android:textColor="#ffffff"
                             android:text = "Click to view Transaction History"
                             android:id="@+id/transact"/>
 

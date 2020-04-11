@@ -12,6 +12,8 @@ import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
@@ -153,28 +155,28 @@ public class OBPRestClient {
 			int statusCode = response.getStatusLine().getStatusCode();
 
 			switch (statusCode) {
-			case 200:
-			case 201:
-				return parseJsonResponse(entity);
-			case 401:
-				try {
-					JSONObject responseJson = parseJsonResponse(entity);
-					if (responseJson.optString("error").contains(
-							consumer.getToken())) {
-						// We have an expired access token (probably?)
-						throw new ExpiredAccessTokenException();
-					} else {
-						// It wasn't (probably?) an expired token error
-						Log.w(LOG_TAG, responseJson.toString());
+				case 200:
+				case 201:
+					return parseJsonResponse(entity);
+				case 401:
+					try {
+						JSONObject responseJson = parseJsonResponse(entity);
+						if (responseJson.optString("error").contains(
+								consumer.getToken())) {
+							// We have an expired access token (probably?)
+							throw new ExpiredAccessTokenException();
+						} else {
+							// It wasn't (probably?) an expired token error
+							Log.w(LOG_TAG, responseJson.toString());
+							throw new ObpApiCallFailedException();
+						}
+					} catch (JSONException e) {
+						// Api response wasn't json -> unexpected
+						Log.w(LOG_TAG, Log.getStackTraceString(e));
 						throw new ObpApiCallFailedException();
 					}
-				} catch (JSONException e) {
-					// Api response wasn't json -> unexpected
-					Log.w(LOG_TAG, Log.getStackTraceString(e));
+				default:
 					throw new ObpApiCallFailedException();
-				}
-			default:
-				throw new ObpApiCallFailedException();
 			}
 		} catch (MalformedURLException e) {
 			Log.w(LOG_TAG, Log.getStackTraceString(e));
@@ -203,6 +205,87 @@ public class OBPRestClient {
 		}
 
 	}
+
+	public static JSONObject getOAuthedJsonPost(String urlString)
+			throws ExpiredAccessTokenException, ObpApiCallFailedException {
+
+		try {
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost request = new HttpPost(urlString);
+			consumer.sign(request);
+			request.setHeader("Accept", "application/json");
+			request.setHeader("Content-type", "application/json");
+			String inputJson = "{\n" +
+					"    \"to\": {\n" +
+					"        \"bank_id\": \"hsbc-test\",\n" +
+					"        \"account_id\": \"9988776655\"\n" +
+					"    },\n" +
+					"    \"value\": {\n" +
+					"        \"currency\": \"HKD\",\n" +
+					"        \"amount\": \"211\"\n" +
+					"    },\n" +
+					"    \"description\": \"refund\"\n" +
+					"}";
+			StringEntity stringEntity = new StringEntity(inputJson);
+			request.setEntity(stringEntity);
+
+			org.apache.http.HttpResponse response = httpclient.execute(request);
+			HttpEntity entity = response.getEntity();
+
+			int statusCode = response.getStatusLine().getStatusCode();
+
+			switch (statusCode) {
+				case 200:
+				case 201:
+					return parseJsonResponse(entity);
+				case 401:
+					try {
+						JSONObject responseJson = parseJsonResponse(entity);
+						if (responseJson.optString("error").contains(
+								consumer.getToken())) {
+							// We have an expired access token (probably?)
+							throw new ExpiredAccessTokenException();
+						} else {
+							// It wasn't (probably?) an expired token error
+							Log.w(LOG_TAG, responseJson.toString());
+							throw new ObpApiCallFailedException();
+						}
+					} catch (JSONException e) {
+						// Api response wasn't json -> unexpected
+						Log.w(LOG_TAG, Log.getStackTraceString(e));
+						throw new ObpApiCallFailedException();
+					}
+				default:
+					throw new ObpApiCallFailedException();
+			}
+		} catch (MalformedURLException e) {
+			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			throw new ObpApiCallFailedException();
+		} catch (OAuthMessageSignerException e) {
+			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			throw new ObpApiCallFailedException();
+		} catch (OAuthExpectationFailedException e) {
+			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			throw new ObpApiCallFailedException();
+		} catch (OAuthCommunicationException e) {
+			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			throw new ObpApiCallFailedException();
+		} catch (ClientProtocolException e) {
+			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			throw new ObpApiCallFailedException();
+		} catch (IOException e) {
+			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			throw new ObpApiCallFailedException();
+		} catch (JSONException e) {
+			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			throw new ObpApiCallFailedException();
+		} catch (ObpApiCallFailedException e) {
+			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			throw new ObpApiCallFailedException();
+		}
+
+	}
+
 
 	private static JSONObject parseJsonResponse(HttpEntity entity)
 			throws ParseException, JSONException, IOException {
