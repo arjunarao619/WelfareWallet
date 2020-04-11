@@ -342,10 +342,15 @@ public class OBPRestClient {
 		return getOAuthedJson(BASE_URL + "/obp/v4.0.0/banks/hsbc-test/accounts/account_ids/private");
 	}
 
-	public static JSONObject getAccountInfo(String ACCOUNT_NUMBER) throws ExpiredAccessTokenException,
+	public static JSONObject getAccountInfo(String acc) throws ExpiredAccessTokenException,
 			ObpApiCallFailedException {
 		//return getOAuthedJson(BASE_URL + "/obp/v1.2/banks");
-		return getOAuthedJson(BASE_URL + "/obp/v4.0.0/my/banks/hsbc-test/accounts/" + ACCOUNT_NUMBER + "/account");
+
+		Log.d("URL","hello");
+		String url1 = BASE_URL + "/obp/v4.0.0/my/banks/hsbc-test/accounts/" + acc + "/account";
+
+		return getOAuthedJson(BASE_URL + "/obp/v4.0.0/my/banks/hsbc-test/accounts/" + acc + "/account");
+
 	}
 
 	

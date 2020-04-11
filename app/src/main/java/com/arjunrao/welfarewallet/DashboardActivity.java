@@ -58,6 +58,8 @@ public class DashboardActivity extends AppCompatActivity {
     String ACCOUNT_NUMBER = "9988776655";
     String[] finallist;
     TextView accnumber;
+    String image;
+    String name;
 // ...
 private static final String BASE_URL = "https://apisandbox.openbankproject.com";
 
@@ -91,15 +93,7 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
             }
         });
 
-        ImageButton details = findViewById(R.id.accountdetails);
-        details.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, DetailsActivity.class);
-                intent.putExtra("ACCOUNT_NUMBER",ACCOUNT_NUMBER);
-                startActivity(intent);
-            }
-        });
+
 
 
         ////// begin spinner population
@@ -165,8 +159,20 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
 
         Intent intent = getIntent();
         String email = intent.getStringExtra("USEREMAIL");
-        String name = intent.getStringExtra("USERNAME");
-        String image = intent.getStringExtra("USERIMAGE");
+        name = intent.getStringExtra("USERNAME");
+         image = intent.getStringExtra("USERIMAGE");
+
+        ImageButton details = findViewById(R.id.accountdetails);
+        details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, DetailsActivity.class);
+                intent.putExtra("ACCOUNT_NUMBER",ACCOUNT_NUMBER);
+                intent.putExtra("USERNAME",name);
+                intent.putExtra("USERIMAGE",image);
+                startActivity(intent);
+            }
+        });
 
         Bitmap profile_picture = getFacebookProfilePicture(image);
 
