@@ -274,13 +274,13 @@ public class OAuthActivity extends Activity {
 				Uri authoriseURI = Uri.parse(urlString);
 				return authoriseURI;
 			} catch (OAuthMessageSignerException e) {
-				Log.w(LOG_TAG, Log.getStackTraceString(e));
+				//Log.w(LOG_TAG, Log.getStackTraceString(e));
 			} catch (OAuthNotAuthorizedException e) {
-				Log.w(LOG_TAG, Log.getStackTraceString(e));
+				//Log.w(LOG_TAG, Log.getStackTraceString(e));
 			} catch (OAuthExpectationFailedException e) {
-				Log.w(LOG_TAG, Log.getStackTraceString(e));
+				//Log.w(LOG_TAG, Log.getStackTraceString(e));
 			} catch (OAuthCommunicationException e) {
-				Log.w(LOG_TAG, Log.getStackTraceString(e));
+				//Log.w(LOG_TAG, Log.getStackTraceString(e));
 			}
 			return null;
 		}

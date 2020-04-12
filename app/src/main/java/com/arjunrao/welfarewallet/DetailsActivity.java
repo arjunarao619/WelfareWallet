@@ -68,7 +68,7 @@ public class DetailsActivity extends AppCompatActivity {
             uid = Profile.getCurrentProfile().getId();
 
             imageURL = new URL("https://graph.facebook.com/" + uid + "/picture?type=large");
-            Log.w("OK",imageURL.toString());
+       //     Log.w("OK",imageURL.toString());
 
 
             new DetailsActivity.RetrieveProfilePictureTask().execute();
@@ -107,7 +107,7 @@ public class DetailsActivity extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Void voids) {
-            Log.d("AIGHT",String.valueOf(bitmap.getHeight()));
+         //   Log.d("AIGHT",String.valueOf(bitmap.getHeight()));
             CircleImageView circleImageView = findViewById(R.id.profile_image2);
             circleImageView.setImageBitmap(bitmap);
 
@@ -144,7 +144,7 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(String result) {
 
-                Log.d("OKOKOKOK",result);
+               // Log.d("OKOKOKOK",result);
                 try {
 
                     JSONObject result1 = new JSONObject(result);

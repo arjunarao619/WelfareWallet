@@ -77,7 +77,7 @@ public class TransactionActivity extends AppCompatActivity {
                 }
                 @Override
                 protected void onPostExecute(String result) {
-                    Log.d("OKOKOKOK",result);
+                   // Log.d("OKOKOKOK",result);
                     try {
                         JSONObject result1 = new JSONObject(result);
                         JSONArray transactionArray = result1.getJSONArray("transactions");

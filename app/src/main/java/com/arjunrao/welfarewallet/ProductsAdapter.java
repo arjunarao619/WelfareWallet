@@ -54,7 +54,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         //Log.d("yy",String.valueOf(product.getComments()));
         boolean issubsidy = Pattern.matches("^(Comments: subsidy).*$",product.getComments());
         if(issubsidy && !product.getBalance().contains("-")){
-            Log.d("yy",String.valueOf(product.getComments()));
+          //  Log.d("yy",String.valueOf(product.getComments()));
             holder.textViewSubsidy.setVisibility(View.VISIBLE);
             holder.textViewSubsidy.setText(product.getComments());
 

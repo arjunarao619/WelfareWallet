@@ -239,40 +239,40 @@ public class OBPRestClient {
 							throw new ExpiredAccessTokenException();
 						} else {
 							// It wasn't (probably?) an expired token error
-							Log.w(LOG_TAG, responseJson.toString());
+							//Log.w(LOG_TAG, responseJson.toString());
 							throw new ObpApiCallFailedException();
 						}
 					} catch (JSONException e) {
 						// Api response wasn't json -> unexpected
-						Log.w(LOG_TAG, Log.getStackTraceString(e));
+						//Log.w(LOG_TAG, Log.getStackTraceString(e));
 						throw new ObpApiCallFailedException();
 					}
 				default:
 					throw new ObpApiCallFailedException();
 			}
 		} catch (MalformedURLException e) {
-			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			//Log.w(LOG_TAG, Log.getStackTraceString(e));
 			throw new ObpApiCallFailedException();
 		} catch (OAuthMessageSignerException e) {
-			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			//Log.w(LOG_TAG, Log.getStackTraceString(e));
 			throw new ObpApiCallFailedException();
 		} catch (OAuthExpectationFailedException e) {
-			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			//Log.w(LOG_TAG, Log.getStackTraceString(e));
 			throw new ObpApiCallFailedException();
 		} catch (OAuthCommunicationException e) {
-			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			//Log.w(LOG_TAG, Log.getStackTraceString(e));
 			throw new ObpApiCallFailedException();
 		} catch (ClientProtocolException e) {
-			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			//Log.w(LOG_TAG, Log.getStackTraceString(e));
 			throw new ObpApiCallFailedException();
 		} catch (IOException e) {
-			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			//Log.w(LOG_TAG, Log.getStackTraceString(e));
 			throw new ObpApiCallFailedException();
 		} catch (JSONException e) {
-			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			//Log.w(LOG_TAG, Log.getStackTraceString(e));
 			throw new ObpApiCallFailedException();
 		} catch (ObpApiCallFailedException e) {
-			Log.w(LOG_TAG, Log.getStackTraceString(e));
+			//Log.w(LOG_TAG, Log.getStackTraceString(e));
 			throw new ObpApiCallFailedException();
 		}
 

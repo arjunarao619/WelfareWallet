@@ -72,7 +72,7 @@ public class ConfirmTransferActivity extends AppCompatActivity {
 
             protected String doInBackground(Void... params) {
                 try {
-                    Log.w("DETAILS",accountfrom + " " + accountto+ " " + amount + " " + remarks);
+                   // Log.w("DETAILS",accountfrom + " " + accountto+ " " + amount + " " + remarks);
                     JSONObject banksJson = OBPRestClient.getOAuthedJsonPost("https://apisandbox.openbankproject.com/obp/v4.0.0/banks/hsbc-test/accounts/" + accountfrom + "/owner/transaction-request-types/SANDBOX_TAN/transaction-requests",accountto,amount,remarks);
 
                     return banksJson.toString();
@@ -86,7 +86,7 @@ public class ConfirmTransferActivity extends AppCompatActivity {
             }
             @Override
             protected void onPostExecute(String result) {
-                Log.d("OKOKOKOK",result);
+              //  Log.d("OKOKOKOK",result);
                 try {
                     //Log.d("PERFECT",result);
                     catLoadingView.dismiss();
