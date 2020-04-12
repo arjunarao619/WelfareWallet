@@ -319,6 +319,7 @@
                         android:layout_marginBottom="@dimen/margin_4dp"
                         android:layout_marginLeft="@dimen/margin_4dp"
                         android:layout_marginStart="@dimen/margin_4dp"
+                        android:id = "@+id/view_enrolled_card"
                         android:layout_weight="1"
                         android:layout_width="wrap_content">
 

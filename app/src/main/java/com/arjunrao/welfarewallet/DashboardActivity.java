@@ -3,6 +3,7 @@ package com.arjunrao.welfarewallet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -144,6 +145,16 @@ private static final String BASE_URL = "https://apisandbox.openbankproject.com";
             public void onClick(View view) {
                 Intent intent = new Intent(DashboardActivity.this, TransactionActivity.class);
                 intent.putExtra("ACCOUNT_NUMBER",ACCOUNT_NUMBER);
+                startActivity(intent);
+            }
+        });
+
+        //TODO go to view enrolled activity
+        ImageButton enrolledcard = findViewById(R.id.view_enrolled);
+        enrolledcard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, EnrolledSubsidiesActivity.class);
                 startActivity(intent);
             }
         });

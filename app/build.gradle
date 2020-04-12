@@ -43,6 +43,6 @@ dependencies {
     implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
     implementation 'com.takisoft.fix:preference-v7:27.0.0.0'
     implementation 'com.github.therajanmaurya:Sweet-Error:1.0.1'
-
+    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
 
 }
